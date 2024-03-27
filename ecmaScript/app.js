@@ -36,6 +36,6 @@ class ProductManager {
 const Manejador = new ProductManager;
 
 
-Manejador.addProduct("Item sexo", "Descripción sexo", 12300, "link.cl", 13422, 3);
+Manejador.addProduct("Televisión", "Televisión de alta fidelidad", 129990, "television.cl", 12233445, 10);
 Manejador.getProduct();
 Manejador.getProductById(2);

@@ -1,12 +1,12 @@
 {
-  "name": "vsc",
+  "name": "proyecto-coder",
   "version": "1.0.0",
-  "description": "",
+  "description": "proyecto de curso de backend de coderhouse",
   "main": "index.js",
   "scripts": {
-    "start": "node --watch ecmaScript/app.js"
+    "start": "node --watch ProductManager/ProductManager.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "fcarrascop",
   "license": "ISC"
 }

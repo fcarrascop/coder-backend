@@ -2,71 +2,98 @@ const fs = require("fs");
 
 class ProductManager {
     constructor() {
-        this.products = (fs.readFileSync("./ProductManager/productos.json")) ? JSON.parse(fs.readFileSync("./ProductManager/productos.json")) : [];
+        this.path = "./ProductManager/productos.json"
+        this.products = (fs.readFileSync(this.path)) ? JSON.parse(fs.readFileSync(this.path)) : [];
+        this.currentId = 1;
     }
 
-    addProduct(title, description, price, thumbnail, code, stock) {
-        const verificarCode = this.products.some((item)=> item.codigo == code);
-        if (verificarCode) {
-            console.log("Código ya existente")
+    addProduct(product) {
+        const productCheck = this.products.some((item)=> item.code == product.code);
+        if (productCheck) {
+            console.log("Error. Código ya existente")
         }
         else {
-            const id_producto = this.products.length + 1;
-            let producto = {
-                id : id_producto,
-                tituto: title,
-                descripcion: description,
-                precio: price,
-                imagen: thumbnail,
-                codigo: code,
-                disponibilidad: stock
+            const id_product = this.currentId;
+            this.currentId++;
+            let productAdd = {
+                "id" : id_product,
+                "title": product.title,
+                "description": product.description,
+                "price": product.price,
+                "thumbnail": product.thumbnail,
+                "code": product.code,
+                "stock": product.stock
             }
-            this.products.push(producto);
-            fs.writeFileSync("./ProductManager/productos.json", JSON.stringify(this.products));
-
+            this.products.push(productAdd);
+            fs.writeFileSync(this.path, JSON.stringify(this.products));
         }
     }
 
-    getProduct() {
-        console.log(this.products)
+    getProducts() {
+        let products = JSON.parse(fs.readFileSync(this.path))
+        console.log(products)
     }
 
     getProductById(id_item) {
-        let  item = (this.products.find((item) => item.id === id_item)) ? console.log((this.products.find((item) => item.id === id_item))) : console.log("Not found")
+        let products = JSON.parse(fs.readFileSync(this.path))
+        let  item = (products.find((item) => item.id === id_item));
+        if (item) {
+            console.log(item)
+        }
+        else {
+            console.log("Error. Producto no encontrado")
+        }
     }
 
     deleteProduct(id_item) {
         let items = this.products.filter((item) => item.id != id_item);
         this.products = items;
-        fs.writeFileSync("./ProductManager/productos.json", JSON.stringify(items));
+        fs.writeFileSync(this.path, JSON.stringify(items));
     }
 
-    updateProduct(id_item, title, description, price, thumbnail, code, stock) {
+    updateProduct(id_item, product) {
         let  item = (this.products.find((item) => item.id == id_item))
         if (item) {
-
-            let producto = {
-                id : id_item,
-                tituto: title,
-                descripcion: description,
-                precio: price,
-                imagen: thumbnail,
-                codigo: code,
-                disponibilidad: stock
+            let productUpdate = {
+                "id" : id_item,
+                "title": (product.title) ? (product.title) : (item.title),
+                "description": (product.description) ? (product.description) : (item.description),
+                "price": (product.price) ? (product.price) : (item.price),
+                "thumbnail": (product.thumbnail) ? (product.thumbnail) : (item.thumbnail),
+                "code": (product.code) ? (product.code) : (item.code),
+                "stock": (product.stock) ? (product.stock) : (item.stock)
             };
             this.deleteProduct(id_item);
-            this.products.push(producto);
-            fs.writeFileSync("./ProductManager/productos.json", JSON.stringify(this.products));
+            this.products.push(productUpdate);
+            fs.writeFileSync(this.path, JSON.stringify(this.products));
         }
         else {
-            console.log("Item no encontrado.")
+            console.log("Error: Producto no encontrado")
         }
     }
 }
 
-const manejoArchivos = new ProductManager;
-
-//manejoArchivos.addProduct("Televisión", "Televisión de alta fidelidad", 129990, "television.cl", 12233445, 10);
-//manejoArchivos.deleteProduct(1);
-//manejoArchivos.getProductById(2);
-//manejoArchivos.updateProduct(1,"Computador", "Computadora apple", 1119000, "apple.com", 1203, 3);
+// Comprobar que el código está bueno
+/* let inventario = new ProductManager;
+inventario.getProducts();
+inventario.addProduct({
+    title: "producto prueba",
+    description: "Este es un producto prueba",
+    price:200,
+    thumbnail:"Sin imagen",
+    code:"abc123",
+    stock:25
+})
+inventario.getProducts();
+inventario.addProduct({
+    title: "producto prueba",
+    description: "Este es un producto prueba",
+    price:200,
+    thumbnail:"Sin imagen",
+    code:"abc123",
+    stock:25
+})
+inventario.getProductById(1);
+inventario.updateProduct(1, {title: "Otro producto"});
+inventario.getProducts();
+inventario.deleteProduct(1); */

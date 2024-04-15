@@ -4,9 +4,17 @@
   "description": "proyecto de curso de backend de coderhouse",
   "main": "index.js",
   "scripts": {
-    "start": "node --watch ProductManager/ProductManager.js"
+    "start": "node --watch Express/src/app.js"
   },
   "keywords": [],
   "author": "fcarrascop",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.24.1",
+    "@babel/core": "^7.24.4",
+    "@babel/preset-env": "^7.24.4"
+  }
 }

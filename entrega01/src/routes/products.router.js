@@ -34,14 +34,14 @@ router.get("/products/:pid", (req,res)=>{
 router.post("/products", (req, res)=>{
     let prod = req.body
     let prodAdd = products.addProduct(prod)
-    res.json({"message": prodAdd})
+    res.json(prodAdd)
 })
 
 router.put("/products/:pid", (req, res)=>{
     let id = parseInt(req.params.pid)
     let prod = req.body
     let prodUpdate = products.updateProduct(id, prod)
-    res.json({"message": prodUpdate})
+    res.json(prodUpdate)
 })
 
 router.delete("/products/:pid", (req, res)=>{

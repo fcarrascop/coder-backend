@@ -37,6 +37,7 @@ class Cart {
     deleteCart(id) {
         this.cartList = this.cartList.filter((item)=> item.id != id)
         fs.writeFileSync(this.path, JSON.stringify(this.cartList))
+        return {"API": `Carrito (id: ${id}) eliminado correctamente`}
     }
 
     addProducts(id, idProduct) {

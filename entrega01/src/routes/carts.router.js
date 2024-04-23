@@ -5,14 +5,10 @@ const ct = require("./../Cart")
 
 let carts = new ct()
 
-router.get("/carts", (req,res)=>{
-    res.json({ "message": "Hola"})
-})
-
 router.post("/carts", (req,res)=>{
     let products = req.body
     let response = carts.createCart(products)
-    res.json({"message": response})
+    res.json(response)
 })
 
 

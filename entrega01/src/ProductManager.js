@@ -15,7 +15,7 @@ class ProductManager {
     addProduct(product) {
         const productCheck = this.products.some((item)=> item.code == product.code);
         if (productCheck) {
-            return {"error": "Error. Código ya existente."}
+            return {"API": "Error. Código ya existente."}
         }
         else {
             this.currentId++;
@@ -50,13 +50,12 @@ class ProductManager {
             return item;
         }
         else {
-            return {"error": "Error. Producto ingresado no existe."};
+            return {"API": "Error. Producto ingresado no existe."};
         }
     }
 
     deleteProduct(id_item) {
-        let items = this.products.filter((item) => item.id != id_item);
-        this.products = items;
+        this.products = this.products.filter((item) => item.id != id_item);
         fs.writeFileSync(this.path, JSON.stringify(items));
         return {"API": `Producto (id:${id_item}) eliminado corretamente.`};
     }
@@ -81,7 +80,7 @@ class ProductManager {
             return productUpdate;
         }
         else {
-            return {"Error": "Producto no encontrado"};
+            return {"API": "Producto no encontrado"};
         }
     }
 }

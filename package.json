@@ -4,13 +4,14 @@
   "description": "proyecto de curso de backend de coderhouse",
   "main": "index.js",
   "scripts": {
-    "start": "node --watch Express/src/app.js"
+    "start": "node --watch entrega01/src/app.js"
   },
   "keywords": [],
   "author": "fcarrascop",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.24.1",

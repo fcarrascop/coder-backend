@@ -1,0 +1,8 @@
+<div>
+    <h1>Products list</h1>
+    <ul>
+        {{#each list}}
+        <li>{ {{this.id}}, {{this.title}}, {{this.description}}, {{this.price}}, {{this.thumbnail}}, {{this.code}}, {{this.stock}}, {{this.status}}, {{this.category}} }</li>
+        {{/each}}
+    </ul>
+</div>

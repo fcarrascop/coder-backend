@@ -1,0 +1,39 @@
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/index.js"></script>
+<div>
+    <div class="form">
+        <h2>
+            Add products
+        </h2>
+        <label>Producto*</label> <br>
+        <input type="text" id="title" placeholder="title"> <br>
+        <label>Descripción*</label> <br>
+        <input type="text" id="description" placeholder="description"> <br>
+        <label>Precio*</label> <br>
+        <input type="number" id="price" placeholder="price"> <br>
+        <label>Imagen</label> <br>
+        <input type="text" id="thumbnail" placeholder="thumbnail"> <br>
+        <label>Código*</label> <br>
+        <input type="text" id="code" placeholder="code"> <br>
+        <label>Stock</label> <br>
+        <input type="number" id="stock" placeholder="stock"> <br>
+        <div>
+            <label>Estatus</label> <br>
+            <input type="radio" id="status-true" name="status" value="True">
+            <label for="status-true" >True</label>
+            <input type="radio" id="status-false" name="status" value="False">
+            <label for="status-false">False</label> <br>
+        </div>
+        <label>Categoría</label> <br>
+        <input type="text" id="category" placeholder="category"> <br>
+        <button id="btn-send" onclick="addProduct()">Enviar</button>
+    </div>
+    <div class="productList">
+        <h1>Products list</h1>
+        <ul id="list">
+            {{#each list}}
+            <li> <button id="{{this.id}}" onclick="deleteProduct({{this.id}})">X</button>{ {{this.id}}, {{this.title}}, {{this.description}}, {{this.price}}, {{this.thumbnail}}, {{this.code}}, {{this.stock}}, {{this.status}}, {{this.category}} }</li>
+            {{/each}}
+        </ul>
+    </div>
+</div>

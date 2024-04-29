@@ -26,9 +26,9 @@ app.use("/", productsRouter)
 socketServer.on("connection", (socket)=>{
     console.log(`New connection`)
     socket.on("product", (data)=>{
-        let mensaje = pm.addProduct(data)
-        if (mensaje.error) {
-            socket.emit("error", {"error": mensaje.error})
+        let message = pm.addProduct(data)
+        if (message.error) {
+            socket.emit("error", {"error": message.error})
         }
         else {
             let productList = pm.getProducts()

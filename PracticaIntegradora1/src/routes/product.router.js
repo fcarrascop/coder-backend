@@ -1,9 +1,11 @@
 import { Router } from "express";
+// Importamos todo lo necesario para ocupar MongoDB dentro de ProductManager
 import ProductManager from "../dao/ProductManager.js";
 
 const router = Router()
 
 let product = new ProductManager()
+
 
 router.get("/products", async (req,res)=>{
     let limit = req.query.limit

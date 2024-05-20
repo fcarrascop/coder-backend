@@ -1,0 +1,32 @@
+{{!-- Se agregan los scripts --}}
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/index.js"></script>
+
+
+{{!-- Implementación del chat en cuestión --}}
+<div class="container">
+    <div class="row">
+        <h1>Chatea con tus amigos</h1>
+    </div>
+    
+    <div class="row log">
+        <div class="col-6">
+            <h2>Registrate para iniciar</h2>
+        </div>
+        <div id="logging" class="col-6 logging">
+            <input type="email" id="email" placeholder="coder@house.com">
+            <button onclick="login()">Inicia!</button>
+        </div>
+    </div>
+
+
+    <div class="div-chat row">
+        <ul id="chat">
+            {{#each list}}
+                <li>{{ this.user }}:{{ this.message }}</li>
+            {{/each}}
+        </ul>
+    </div>
+    <div id="inputChat" class="row">
+    </div>
+</div>

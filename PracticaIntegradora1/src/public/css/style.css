@@ -1,0 +1,35 @@
+.container {
+    display: flex;
+    flex-flow: column wrap;
+    gap: 10px;
+}
+
+.div-chat {
+    border: 2px solid black;
+    border-radius: 10px;
+    list-style-type: none;
+}
+
+.log {
+    display: flex;
+    flex-flow: row;
+}
+
+#logging {
+    text-align: end;
+}
+
+#inputChat {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+    #chat {
+    list-style: none;
+}
+
+#chatBox {
+    width: 100%;
+}

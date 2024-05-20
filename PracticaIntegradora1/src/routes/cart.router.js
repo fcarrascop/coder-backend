@@ -1,6 +1,6 @@
 import { Router } from "express";
-import CartManager from "../dao/model/CartManager.js";
-import cartModel from "../dao/model/cart.model.js";
+// Usamos el CartManager para funcionar con MongoDB
+import CartManager from "../dao/CartManager.js";
 
 const router = Router()
 

@@ -51,7 +51,6 @@ class ProductManager {
 
     async getProductsById(id) {
         let product = await productModel.find({ id: id })
-        console.log(product)
         if (product != "") {
             return product
         }

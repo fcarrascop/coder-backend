@@ -5,16 +5,19 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node --watch PracticaIntegradora1/src/app.js"
+    "start": "node --watch SegundaPreentrega/src/app.js"
   },
   "keywords": [],
   "author": "fcarrascop",
   "license": "ISC",
   "dependencies": {
+    "cookie-parser": "^1.4.6",
     "express": "^4.19.2",
     "express-handlebars": "^7.1.2",
+    "express-session": "^1.18.0",
     "mongodb": "^6.6.1",
     "mongoose": "^8.3.4",
+    "mongoose-paginate-v2": "^1.8.1",
     "multer": "^1.4.5-lts.1",
     "socket.io": "^4.7.5"
   },

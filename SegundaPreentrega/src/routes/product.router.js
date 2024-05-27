@@ -2,6 +2,7 @@ import { Router } from "express";
 // Importamos todo lo necesario para ocupar MongoDB dentro de ProductManager
 import ProductManager from "../ProductManager.js";
 
+
 const router = Router()
 
 let product = new ProductManager()
@@ -10,6 +11,7 @@ let product = new ProductManager()
 router.get("/", async (req,res)=>{
     let { limit = 10, page = 1, sort, query } = req.query
     limit = parseInt(limit)
+    page = parseInt(page)
     if (!Number.isInteger(page)) {
         res.status(400).json({status: "Error", message: "Página ingresada inválida."})
     }
@@ -101,6 +103,17 @@ router.put("/products/:pid", async (req, res)=>{
         res.json({status: "success", payload: prodUpdate})
     }
 })
+
+router.get("/products", async (req,res)=>{
+    let page = parseInt(req.query.page)
+    if (!page) {page = 1}
+    let result = await product.getProducts({"page": page})
+    result.prevLink = result.hasPrevPage ? `http://localhost:8080/products?page=${result.prevPage}` : '';
+    result.nextLink = result.hasNextPage ? `http://localhost:8080/products?page=${result.nextPage}` : '';
+    res.render("products", result)
+})
+
+
 
 
 

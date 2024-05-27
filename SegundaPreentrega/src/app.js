@@ -4,7 +4,7 @@
 
 // Módulos
 import express from "express"
-import { __dirname } from "./utils.js"
+import __dirname from "./utils.js"
 import handlebars from "express-handlebars"
 import mongoose from "mongoose"
 // Routers
@@ -19,15 +19,23 @@ app.listen(PORT, () => {
     console.log(`Server running on ${PORT}`)
 })
 
+// Configuración express
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
+
+const hbs = handlebars.create({
+    defaultLayout: "main",
+    runtimeOptions: {
+        allowProtoPropertiesByDefault: true
+    }
+})
+
 // Configurar handlebars
-app.engine("handlebars", handlebars.engine())
+app.engine("handlebars", hbs.engine)
 app.set("views", __dirname+ "/views")
 app.set("view engine", "handlebars")
 app.use(express.static(__dirname + "/public"))
 
-// Configuración express
-app.use(express.json())
-app.use(express.urlencoded({extended: true}))
 
 // Router
 app.use("/", productRouter)

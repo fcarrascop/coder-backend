@@ -1,0 +1,32 @@
+<script src="/js/index.js"></script>
+
+<div>
+    <div class="items">
+        {{#each docs}}
+        <div class="item">
+            <p>{{this.title}}</p>
+            <button type="button" onclick="addproduct({{this.id}})">🛒</button>
+        </div>
+        {{/each}}
+    </div>
+    <div class="buttons">
+        <a href={{this.prevLink}}>
+            <button 
+            {{#unless hasPrevPage}}
+            disabled
+            {{/unless}}
+            >←</button>
+        </a>
+        <p>Página: {{this.page}}</p>
+        <a href={{this.nextLink}}>
+            <button 
+            {{#unless hasNextPage}}
+            disabled
+            {{/unless}}
+            >→
+
+            </button>
+        </a>
+
+    </div>
+</div>

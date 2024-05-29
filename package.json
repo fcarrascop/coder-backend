@@ -5,12 +5,14 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node --watch SegundaPreentrega/src/app.js"
+    "start": "node --watch ImplementacionLogin/src/app.js"
   },
   "keywords": [],
   "author": "fcarrascop",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
+    "connect-mongo": "^5.1.0",
     "cookie-parser": "^1.4.6",
     "express": "^4.19.2",
     "express-handlebars": "^7.1.2",
@@ -19,6 +21,7 @@
     "mongoose": "^8.3.4",
     "mongoose-paginate-v2": "^1.8.1",
     "multer": "^1.4.5-lts.1",
+    "session-file-store": "^1.5.0",
     "socket.io": "^4.7.5"
   },
   "devDependencies": {

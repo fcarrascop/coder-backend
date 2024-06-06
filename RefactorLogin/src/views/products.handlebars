@@ -1,0 +1,39 @@
+<script src="/js/index.js"></script>
+
+<h1>Bienvenido {{user}} - Rol: {{rol}}</h1>
+<a href="http://localhost:8080/profile">
+    <button>🚹</button>
+</a>
+<form action="/logout" method="POST">
+    <button type="submit">Cerrar Sesión</button>
+</form>
+<div>
+    <div class="items">
+        {{#each result.docs}}
+        <div class="item">
+            <p>{{this.title}}</p>
+            <button type="button" onclick="addproduct({{this.id}})">🛒</button>
+        </div>
+        {{/each}}
+    </div>
+    <div class="buttons">
+        <a href={{this.prevLink}}>
+            <button 
+            {{#unless hasPrevPage}}
+            disabled
+            {{/unless}}
+            >←</button>
+        </a>
+        <p>Página: {{this.page}}</p>
+        <a href={{this.nextLink}}>
+            <button 
+            {{#unless hasNextPage}}
+            disabled
+            {{/unless}}
+            >→
+
+            </button>
+        </a>
+
+    </div>
+</div>

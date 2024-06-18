@@ -1,0 +1,74 @@
+<script src="/js/index.js"></script>
+
+<header>
+    <nav class="navbar navbar-expand-xl">
+        <div class="container">
+            <a class="navbar-brand brand header-adj" href="http://localhost:8080/">
+                Tienda genérica.
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse text-center justify-content-end" id="navbarNav">
+                <!-- paginas -->
+                <ul class="navbar-nav">
+                    <li class="nav-item blanco">
+                        <a class="nav-link blanco" aria-current="page" href="http://localhost:8080/products">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link blanco" aria-current="page" href="http://localhost:8080/profile">Perfil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link blanco" href="http://localhost:8080/cart">🛒</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="container">
+    <h1>Bienvenido al carrito</h1>
+    <button type="button"class="btn btn-outline-secondary" onclick="clearCart({{id}})">🗑️</button>
+    <div class="indicativosCarrito row">
+        <div class="col-5">
+            <p>Nombre</p>  
+        </div>
+        <div class="col-2">
+            <p>Cantidad</p> 
+        </div>
+        <div class="col-2">
+            <p>Precio</p> 
+        </div>
+        <div class="col-2">
+            <p>Total</p>
+        </div>
+        <div class="col-1">
+            <p>Eliminar</p>
+        </div>
+    </div>
+    {{#each products}}
+    <div class="productosCarrito row">
+        <div class="col-5">
+            <p>{{this.id.title}}</p>  
+        </div>
+        <div class="col-2 text-center">
+            <p>{{this.quantity}}</p>
+        </div>
+        <div class="col-2">
+            <p>${{this.id.price}}</p>  
+        </div>
+        <div class="col-2">
+            <p>${{multiply this.id.price this.quantity}}</p>
+        </div>
+        <div class="col-1">
+            <button type="button" class="btn btn-outline-secondary btn-lg" onclick="removeItem({{this.id.id}}, {{../id}})">❌</button>
+        </div>
+    </div>
+    {{/each}}
+    <div class="row">
+        <div class="col-9"></div>
+        <div class="col-3">Total: ${{sumTotals products}}</div>
+    </div>
+</div>

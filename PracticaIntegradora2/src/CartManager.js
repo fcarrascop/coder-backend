@@ -10,11 +10,14 @@ class CartManager {
     // Get the last id from the database
     async Update() {
         let list = await cartModel.find()
-        list.forEach((cart)=>{this.id = (cart.id > this.id) ? cart.id : this.id})
+        list.forEach((cart)=>{
+            this.id = (Number(cart.id) > this.id) ? Number(cart.id): this.id
+        })
     }
     
     // Get the cart (by id) or all carts (if id is not provided
     async getCart(id) {
+        await this.Update()
         let Cart
         if (id) {
             Cart = await cartModel.findOne({id: id})
@@ -28,18 +31,21 @@ class CartManager {
     
     // Get the ObjectId from the product id
     async getObjectId(id) {
+        await this.Update()
         let result = await productModel.findOne({id: id})
         if ((result.length === 0)) return ({"error": "Producto no encontrado"})
         return ((result._id).toString())
     }
 
     async getCartId(_id) {
+        await this.Update()
         let result = await cartModel.findOne({_id: _id})
         if (result?.length === 0 ) return ({error: "No se ha encontrado el carrito"})
         return (result.id)
     }
 
     async createCart(products) {
+        await this.Update()
         this.id++ 
         let list = []
         if (products?.products) {
@@ -57,12 +63,14 @@ class CartManager {
     }
 
     async deleteCart(id) {
+        await this.Update()
         let result = await cartModel.deleteOne({id: id})
         return ({"message": `Carrito ${id} eliminado con éxito.`})
     }
 
     // Working fine!
     async addProducts(id, idProduct) {
+        await this.Update()
         let itemId = await this.getObjectId(idProduct)
         if (itemId?.message) return (itemId)
         let cart = await cartModel.findOne({id: id})
@@ -85,6 +93,7 @@ class CartManager {
 
 
     async deleteProduct(idCart, idProduct) {
+        await this.Update()
         let cart = await cartModel.findOne({id: idCart})
         if (cart.length === 0) return ({error:"Carrito no encontrado"})
         let cartUpdate = cart.products.filter((item) => (item.id.id !== idProduct))
@@ -94,6 +103,7 @@ class CartManager {
 
 
     async updateCart(idCart, products) {
+        await this.Update()
         let list = []
         if (products){
             for (let item of products) {
@@ -107,6 +117,7 @@ class CartManager {
     }
 
     async updateProductQuantity(idCart, idProduct, quantity) {
+        await this.Update()
         let cart = await this.getCart(idCart)
         if (cart?.error) return cart
         let productIndex = cart.products.map((item)=>(item.id.id).toString()).indexOf(idProduct.toString())

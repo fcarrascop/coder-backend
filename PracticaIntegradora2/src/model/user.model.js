@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
     email: { type: String, unique: true },
     age: Number,
     password: String,
-    edit: { type: Boolean, default: false },
+    role: { type: String, default: "user" },
     cartId: { type: mongoose.Schema.Types.ObjectId }
 });
 

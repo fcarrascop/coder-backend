@@ -33,12 +33,7 @@
     <p>Apellido: {{user.lastName}}</p>
     <p>Email: {{user.email}}</p>
     <p>Edad: {{user.age}}</p>
-    <p>Rol: {{#if user.edit}}
-        Admin
-        {{else}}
-        User
-        {{/if}}
-    </p>
+    <p>Rol: {{user.role}}</p>
     <form action="/logout" method="POST">
         <button type="submit" class="btn btn-outline-secondary">Cerrar Sesión</button>
     </form>

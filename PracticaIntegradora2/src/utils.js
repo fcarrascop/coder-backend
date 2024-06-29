@@ -2,7 +2,7 @@ import {fileURLToPath} from "url"
 import { dirname } from "path"
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
-import exphbs from "express-handlebars"
+import validator from "validator"
 
 // Configuración para handlebars
 
@@ -48,4 +48,16 @@ export const tokenExtractor = (token) => {
 		}
 	})
 	return result
+}
+
+
+export const registerValidator = (fName, lName, age, email, password) => {
+	let invalidStringChars = "1234567890¿¡?=)(/&%$#\"!@¨*+{}[]^`~,.-_:;<>|°"
+	let invalid = "¿¡?=)(/&%$#\"!@¨*+{}[]^`~,-_:;<>|°áéíóúÁÉÍÓÚÄËÏÖÜQWERTYUIOPÑLKJHGFDSAZXCVBNMñ"
+	let DfName = !invalidStringChars.split('').some(char => fName.includes(char))
+	let DlName = !invalidStringChars.split('').some(char => lName.includes(char))
+	let Dage = ((parseInt(age) < 150) && (parseInt(age) > 4))
+	let Demail = validator.isEmail(email) && !invalid.split('').some(char => email.split("@")[0].includes(char))
+	let dpassword = password.trim() !== "" && !password.split("").some((char) => char === " ");
+	return (DfName && DlName && Dage && Demail && dpassword)
 }

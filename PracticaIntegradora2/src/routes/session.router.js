@@ -2,6 +2,8 @@ import { Router } from "express";
 import { isAuthenticated, isNotAuthenticated } from "../middlewares/auth.js";
 import passport from "passport";
 import { generateToken, tokenExtractor } from "../utils.js";
+import UserModel from "../model/user.model.js"
+import cartModel from "../model/cart.model.js";
 
 const router = Router();
 
@@ -62,8 +64,14 @@ router.get("/current", passport.authenticate("jwt", {session:false}), async (req
     res.send({status:"ok", data: req.user})
 })
 
-/* router.get("*", (req,res)=>{
-    res.status(404).send({message: "Página no encontrada."})
-}) */
+// Solo de prueba, para no perder tiempo
+router.delete("/api/delete/:uid", async (req,res) => {
+    let id = req.params.uid
+    let user = await UserModel.findOne({_id: id})
+    let cartId = user.cartId
+    let response = await UserModel.deleteOne({_id: id})
+    let cart = await cartModel.findOneAndDelete({_id: cartId})
+    res.send({"message": "Usuario y carrito eliminado"})
+})
 
 export default router

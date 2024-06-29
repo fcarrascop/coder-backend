@@ -71,11 +71,11 @@ router.get("/products", isAuthenticated, async (req,res)=>{
     if (!page) {page = 1}
     let result = await product.getProducts({"page": page})
     let user = tokenExtractor(req.signedCookies["user"])
-    let rol = user?.edit === true ? "admin" : "user"
+    // let rol = user.role
     let id = await cart.getCartId(user.cartId)
     result.prevLink = result.hasPrevPage ? `http://localhost:8080/products?page=${result.prevPage}` : '';
     result.nextLink = result.hasNextPage ? `http://localhost:8080/products?page=${result.nextPage}` : '';
-    res.render("products", {"result": result, "user": user.firstName, "rol": rol, "cartId": id})
+    res.render("products", {"result": result, "user": user.firstName, "rol": user.role, "cartId": id})
 })
 
 export default router

@@ -3,7 +3,7 @@ import local from "passport-local";
 import GitHubStrategy from "passport-github2";
 import jwt from "passport-jwt"
 import UserModel from "../model/user.model.js";
-import { createHash, isValidPassword, cookieExtractor, generateToken } from "../utils.js";
+import { createHash, isValidPassword, cookieExtractor, generateToken, registerValidator } from "../utils.js";
 
 
 const JWTStrategy = jwt.Strategy
@@ -32,7 +32,7 @@ const initializePassport = () => {
                     email: profile._json.email,
                     age: 0,
                     password: "",
-                    edit: false,
+                    role: "user",
                     cartId: id.payload._id
                 }
                 let result = await UserModel.create(newUser)
@@ -51,6 +51,8 @@ const initializePassport = () => {
     passport.use("register", new LocalStrategy(
         {passReqToCallback: true, usernameField: "email"}, async (req, username, password, done) => {
             const { firstName, lastName, age, email } = req.body
+            if (!firstName || !lastName || !age || !email) return done(null, false, {message: "Datos insuficientes."})
+            if (!registerValidator(firstName, lastName, age, email, password) ) return done(null, false, {message: "Campos inválidos."})
             try {
                 let user = await UserModel.findOne({email: username})
                 if (user) {
@@ -67,7 +69,7 @@ const initializePassport = () => {
                     email: email,
                     age: age,
                     password: createHash(password),
-                    edit: false,
+                    role: "user",
                     cartId: id.payload._id
                 }
                 let result = await UserModel.create(newUser)

@@ -55,5 +55,5 @@ export const showProducts = async (req, res) => {
     let id = await cart.getCartId(user.cartId)
     result.prevLink = result.hasPrevPage ? `http://localhost:8080/products?page=${result.prevPage}` : '';
     result.nextLink = result.hasNextPage ? `http://localhost:8080/products?page=${result.nextPage}` : '';
-    res.render("products", {"result": result, "user": user.firstName, "rol": user.role, "cartId": id})
+    res.render("products", {"result": result, "user": user.firstName, "role": user.role, "cartId": id})
 }

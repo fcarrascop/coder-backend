@@ -43,7 +43,7 @@ export const tokenExtractor = (token) => {
 			lastName: credentials.data.lastName,
 			email: credentials.data.email,
 			age: credentials.data.age,
-			edit: credentials.data.edit,
+			role: credentials.data.role,
 			cartId: credentials.data.cartId
 		}
 	})

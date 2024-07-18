@@ -44,6 +44,14 @@ class CartManager {
         return (result.id)
     }
 
+    // Tengo que optimizar y rehacer las funciones, hay muchas que tengo que tengo que borrar y otras que están de más.
+    async getCartById(_id) {
+        await this.Update()
+        let result = await cartModel.findOne({_id: _id})
+        if (result?.length === 0 ) return ({error: "No se ha encontrado el carrito"})
+        return (result)
+    }
+
     async createCart(products) {
         await this.Update()
         this.id++ 

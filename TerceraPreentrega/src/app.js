@@ -5,7 +5,6 @@ import handlebars from "express-handlebars"
 import mongoose from "mongoose"
 import cookieParser from "cookie-parser"
 import passport from "passport"
-import bodyParser from "body-parser"
 import initializePassport from "./config/passport.config.js"
 import { configWebSocket } from "./config/websocket.config.js"
 
@@ -14,6 +13,7 @@ import productRouter from "./routes/product.router.js"
 import cartRouter from "./routes/cart.router.js"
 import sessionRouter from "./routes/session.router.js"
 import chatRouter from "./routes/chat.router.js"
+import viewRouter from "./routes/views.router.js"
 
 // Inicializar el servidor
 let app = express()
@@ -31,9 +31,6 @@ app.use(express.urlencoded({extended: true}))
 
 // Configuración CookieParser
 app.use(cookieParser(process.env.SECRET_COOKIE))
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
 
 // Configuración handlebars
 const hbs = handlebars.create({
@@ -58,15 +55,6 @@ app.set("views", __dirname+ "/views")
 app.set("view engine", "handlebars")
 app.use(express.static(__dirname + "/public"))
 
-/* const transporter = nodemailer.createTransport({
-    service: "gmail",
-    port: 587,
-    auth: {
-        user: process.env.EMAIL_GMAIL,
-        pass: process.env.CODE_GMAIL
-    }
-}) */
-
 initializePassport()
 app.use(passport.initialize())
 
@@ -75,6 +63,7 @@ app.use("/", productRouter)
 app.use("/", cartRouter)
 app.use("/", sessionRouter)
 app.use("/", chatRouter)
+app.use("/", viewRouter)
 
 mongoose.connect(process.env.MONGODB_URL)
     .then(()=>{

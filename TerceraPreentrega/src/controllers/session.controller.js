@@ -44,6 +44,8 @@ export const current = (req, res) => {
     res.send({status:"ok", data: user})
 }
 
+// Routes de prueba, para hacer testing más rápido.
+
 export const cartUserDelete = async (req, res) => {
     let uid = req.params.uid
     let user = await userModel.findOne({ _id: uid })

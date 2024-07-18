@@ -1,7 +1,7 @@
 import { cookieExtractor } from "../utils.js"
 
 export const isAuthenticated = (req, res, next) => {
-    if (cookieExtractor(req,res)) {
+    if (cookieExtractor(req)) {
         return next()
     }
     else {
@@ -10,7 +10,7 @@ export const isAuthenticated = (req, res, next) => {
 }
 
 export const isNotAuthenticated = (req, res, next) => {
-    if (!cookieExtractor(req,res)) {
+    if (!cookieExtractor(req)) {
         return next()
     }
     else {

@@ -28,7 +28,7 @@ export const isValidPassword = (user, password) => bcrypt.compareSync(password, 
 
 // Cookie extractor
 
-export const cookieExtractor = (req,res) => {
+export const cookieExtractor = (req) => {
 	let token = null
 	if (req?.signedCookies["user"]) {
 		token = req.signedCookies["user"]
@@ -51,6 +51,10 @@ export const tokenExtractor = (token) => {
 		result = new sessionDTO(credentials.data)
 	})
 	return result
+}
+
+export const dataExtractor = (req) => {
+	return tokenExtractor(cookieExtractor(req))
 }
 
 export const registerValidator = (fName, lName, age, email, password) => {

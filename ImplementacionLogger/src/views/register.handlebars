@@ -1,0 +1,18 @@
+<div class="container login d-flex flex-column text-center">
+    <h2>Registro</h2><br>
+    <form action="/register" method="POST">
+        <label for="firstName" class="form-label">Nombre:</label><br>
+        <input type="text" class="form-control" name="firstName" required><br>
+        <label for="lastName" class="form-label">Apellido:</label><br>
+        <input type="text" class="form-control" name="lastName" required><br>
+        <label for="email" class="form-label">Email:</label><br>
+        <input type="email" class="form-control" name="email" required><br>
+        <label for="age" class="form-label">Edad:</label><br>
+        <input type="number" class="form-control" name="age" required><br>
+        <label for="password" class="form-label">Contraseña:</label><br>
+        <input type="password" class="form-control" name="password" required><br><br>
+        <button type="submit" class="btn btn-outline-secondary btn-large">Registrarse</button><br>
+    </form>
+    <br>
+    <a href="/login"><button type="button" class="btn btn-outline-secondary btn-large">Iniciar sesión</button></a>
+</div>

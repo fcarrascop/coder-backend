@@ -19,7 +19,6 @@ export const getLogin = async (req, res) => {
     if (!req.user) return res.status(400).send({ status: "error", message: "Datos incompletos"})
     try {
         res.cookie("user", req.user, {httpOnly:true, secure:true, maxAge: 86400000, signed:true})
-        req.logger.error("Hola")
         res.redirect("/products")
     }
     catch (error) {

@@ -1,0 +1,11 @@
+2024-07-30T03:02:10.828Z fatal: Test fatal
+2024-07-30T03:02:10.830Z error: Test error
+2024-07-30T03:02:25.028Z fatal: Test fatal
+2024-07-30T03:02:25.029Z error: Test error
+2024-07-30T03:02:33.917Z fatal: Test fatal
+2024-07-30T03:02:33.918Z error: Test error
+2024-08-06T12:06:29.330Z error: Hola
+2024-08-06T12:06:29.339Z error: Hola
+2024-08-06T15:59:03.070Z error: Hola
+2024-08-06T15:59:03.078Z error: Hola
+2024-08-09T02:51:29.397Z error: Error al obtener el producto: undefined

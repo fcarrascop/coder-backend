@@ -1,0 +1,211 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Kaisei Decol", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.itemCard {
+    margin: 5px;
+}
+
+.login {
+    margin-top: 70px;
+    margin-bottom: 70px;
+    color: black;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.023);
+    text-decoration: none;
+    max-width: 300px;
+    border-radius: 20px;
+}
+
+.title {
+    padding: 20px 0 0 40px;
+}
+
+.blanco {
+    color: white;
+}
+
+.btn-large {
+    width: 200px;
+}
+
+.btn-page {
+    width: 50px;
+    height: 50px;
+}
+
+.botones-pag {
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+
+nav {
+    background-color: rgba(27, 38, 59, 0.9176470588);
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+
+nav .brand {
+    font-size: 34px;
+    background-color: white;
+    font-style: italic;
+}
+
+nav div .navbar-nav {
+    align-items: center;
+}
+
+nav div ul li {
+    margin: 3px 10px 0 10px;
+}
+
+nav div ul li a {
+    color: white;
+}
+
+.carrito {
+    width: 43px;
+}
+
+.bubble {
+    width: 43px;
+    font-size: 12px;
+    border: 1px solid white;
+    border-radius: 50px;
+    color: black;
+    background-color: white;
+}
+
+.rowBienvenida {
+    margin-top: 20px;
+}
+
+.itemList {
+    gap: 10px;
+}
+
+.itemList h2 {
+    text-align: center;
+    padding: 30px 0 30px 0;
+    font-size: 40px;
+}
+
+.itemCard {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    -webkit-box-shadow: 0px 0px 77px 5px rgba(153, 153, 153, 0.12);
+    -moz-box-shadow: 0px 0px 77px 5px rgba(153, 153, 153, 0.12);
+    box-shadow: 0px 0px 77px 5px rgba(153, 153, 153, 0.1215686275);
+    border-radius: 10px;
+    text-align: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.itemCard:hover {
+    background-color: rgba(153, 153, 153, 0.1215686275);
+    transition: background-color 0.5s;
+}
+
+.itemCardImg {
+    width: 300px;
+    height: 300px;
+}
+
+.itemIndividual h1 {
+    padding: 10px 0 10px 0;
+}
+
+.itemIndividual h2 {
+    padding: 10px 0 10px 0;
+}
+
+.itemIndividual p {
+    padding: 10px 0 10px 0;
+}
+
+.volver {
+    color: white;
+    padding: 10px;
+    max-width: 100px;
+    background-color: rgba(0, 0, 0, 0.103);
+    text-decoration: none;
+    border-radius: 2px;
+}
+
+.volver:visited {
+    color: black;
+}
+
+.volver:link {
+    color: black;
+}
+
+.mas {
+    color: black;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.103);
+    text-decoration: none;
+    border-radius: 2px;
+}
+
+.mas:visited {
+    color: black;
+}
+
+.mas:link {
+    color: black;
+}
+
+.contenedor {
+    gap: 20px;
+}
+
+.comentario {
+    font-size: 22px;
+}
+
+.indicativosCarrito {
+    padding: 40px 0 40px 0;
+}
+
+.indicativosCarrito p {
+    font-size: 24px;
+}
+
+.productosCarrito {
+    padding: 20px 0 20px 0;
+}
+
+.productosCarrito p {
+    font-size: 20px;
+}
+
+.productosCarrito img {
+    width: 100px;
+    height: 100px;
+}
+
+.password-criteria ul {
+    list-style: none;
+    padding: 0;
+}
+.password-criteria li {
+    color: red;
+}
+.password-criteria li.valid {
+    color: green;
+}
+
+.changePassword {
+    width: 350px;
+}
+
+/*# sourceMappingURL=index.css.map */

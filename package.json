@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node --env-file .env --watch  PracticaIntegradora3/src/app.js"
+    "start": "node --env-file .env --watch  DocumentarAPI/src/app.js"
   },
   "keywords": [],
   "author": "fcarrascop",
@@ -33,6 +33,8 @@
     "semver": "^7.6.2",
     "session-file-store": "^1.5.0",
     "socket.io": "^4.7.5",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
     "validator": "^13.12.0",
     "winston": "^3.13.1"
   },

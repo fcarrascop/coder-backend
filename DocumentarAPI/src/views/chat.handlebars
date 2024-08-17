@@ -1,0 +1,60 @@
+{{!-- Se agregan los scripts --}}
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/chat.js"></script>
+
+
+<header>
+    <nav class="navbar navbar-expand-xl">
+        <div class="container">
+            <a class="navbar-brand brand header-adj" href="http://localhost:8080/">
+                Tienda genérica.
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse text-center justify-content-end" id="navbarNav">
+                <!-- paginas -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link blanco" aria-current="page"
+                            href="http://localhost:8080/home">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link blanco" aria-current="page" href="http://localhost:8080/profile">Perfil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link blanco" href="http://localhost:8080/chat">Chat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link blanco" href="http://localhost:8080/cart">🛒</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="container">
+
+</div>
+
+{{!-- Implementación del chat en cuestión --}}
+<div class="container">
+    <div>Usuario: <span id="user">{{user.name}} ({{user.email}})</span></div>
+    <div class="div-chat row">
+        <ul id="chat">
+            {{#each list}}
+            <li><strong>{{ this.user }}:</strong> {{ this.message }}</li>
+            {{/each}}
+        </ul>
+    </div>
+    <div id="inputChat" class="row">
+        <div class="col-10"> 
+            <input type="text" id="chatBox">
+        </div>
+        <div class="col-2"> 
+            <button onclick="sendMessage()">Enviar</button> 
+        </div>
+    </div>
+</div>

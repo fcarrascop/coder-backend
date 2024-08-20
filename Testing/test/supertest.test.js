@@ -13,8 +13,8 @@ describe("Testing API tienda genérica", ()=>{
         it("Logeando con un usuario admin", async ()=>{
             // Sacar los datos de usuario desde el .env
             const User = {
-                email: "adminCoder@coder.com",
-                password: "adminCod3r123"
+                email: "",
+                password: ""
             }
 
             const response = await requester.post("/login").send(User)

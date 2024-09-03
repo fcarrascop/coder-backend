@@ -1,0 +1,474 @@
+paths:
+  /api/cart:
+    put:
+      tags:
+        - Carts (User)
+      summary: Vacia el carrito relacionado a la sesion actual
+      description: Vacia el carrito relacionado a la sesion actual
+      responses:
+        200:
+          description: Peticion exitosa
+        404:
+          description: Carrito no encontrado
+        401:
+          description: No autorizado
+  /api/cart/products/{productId}:
+    post:
+      tags:
+        - Carts (User)
+      summary: Agrega un producto al carrito relacionado a la sesion actual
+      description: Agrega un producto al carrito relacionado a la sesion actual
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          description: ID del producto
+          schema:
+            type: string
+          example: "2"
+      responses:
+        200:
+          description: Peticion exitosa
+        404:
+          description: Producto no encontrado
+        401:
+          description: No autorizado
+    delete:
+      tags:
+        - Carts (User)
+      summary: Elimina un producto del carrito relacionado a la sesion actual
+      description: Elimina un producto del carrito relacionado a la sesion actual
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          description: ID del producto
+          schema:
+            type: string
+          example: "2"
+      responses:
+        200:
+          description: Peticion exitosa
+        404:
+          description: Producto no encontrado
+        401:
+          description: No autorizado
+  /api/cart/purchase:
+    post:
+      tags:
+        - Carts (User)
+      summary: Realiza la compra de los productos en el carrito relacionado a la sesion actual
+      description: Realiza la compra de los productos en el carrito relacionado a la sesion actual
+      responses:
+        200:
+          description: Peticion exitosa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Purchased'
+        404:
+          description: Carrito no encontrado
+        400:
+          description: No se encontraron productos en el carrito
+        401:
+          description: No autorizado
+  /api/carts:
+    get:
+      tags:
+        - Carts (Admin)
+      summary: Obtiene todos los carritos
+      description: Obtiene todos los carritos
+      responses:
+        200:
+          description: Peticion exitosa
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cart'
+        404:
+          description: Carritos no encontrados
+        401:
+          description: No autorizado
+    post:
+      tags:
+        - Carts (Admin)
+      summary: Crea un carrito
+      description: Crea un carrito
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/Cart'
+      responses:
+        200:
+          description: Peticion exitosa
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cart'
+        401:
+          description: No autorizado
+        404:
+          description: Producto no encontrado
+  /api/carts/{CartId}:
+    get:
+      tags:
+        - Carts (Admin)
+      summary: Obtiene el carrito con el ID especificado
+      description: Obtiene el carrito con el ID especificado
+      parameters:
+        - name: CartId
+          in: path
+          required: true
+          description: ID del carrito
+          schema:
+            type: string
+          example: "2"
+      responses:
+        200:
+          description: Peticion exitosa
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cart'
+        404:
+          description: Carrito no encontrado
+        401:
+          description: No autorizado
+    put:
+      tags:
+        - Carts (Admin)
+      summary: Edita el carrito con el ID especificado
+      description: Edita el carrito con el ID especificado
+      parameters:
+        - name: CartId
+          in: path
+          required: true
+          description: ID del carrito
+          schema:
+            type: string
+          example: "2"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/Cart'
+      responses:
+        200:
+          description: Peticion exitosa
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cart'
+        404:
+          description: Carrito no encontrado
+        401:
+          description: No autorizado
+    delete:
+      tags:
+        - Carts (Admin)
+      summary: Vacía el carrito con el ID especificado
+      description: Vacía el carrito con el ID especificado
+      parameters:
+        - name: CartId
+          in: path
+          required: true
+          description: ID del carrito
+          schema:
+            type: string
+          example: "2"
+      responses:
+        200:
+          description: Peticion exitosa
+        404:
+          description: Carrito no encontrado
+        401:
+          description: No autorizado
+  /api/carts/{CartId}/purchase:
+    post:
+      tags:
+        - Carts (Admin)
+      summary: Realiza la compra de los productos en el carrito con el ID especificado
+      description: Realiza la compra de los productos en el carrito con el ID especificado
+      parameters:
+        - name: CartId
+          in: path
+          required: true
+          description: ID del carrito
+          schema:
+            type: string
+          example: "2"
+      responses:
+        200:
+          description: Peticion exitosa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Purchased'
+        404:
+          description: Carrito no encontrado
+        400:
+          description: No se encontraron productos en el carrito
+        401:
+          description: No autorizado
+  /api/carts/{CartId}/products/{ProductsId}:
+    post:
+      tags:
+        - Carts (Admin)
+      summary: Agrega un producto al carrito con el ID especificado
+      description: Agrega un producto al carrito con el ID especificado
+      parameters:
+        - name: CartId
+          in: path
+          required: true
+          description: ID del carrito
+          schema:
+            type: string
+          example: "2"
+        - name: ProductsId
+          in: path
+          required: true
+          description: ID del producto
+          schema:
+            type: string
+          example: "2"
+      responses:
+        200:
+          description: Peticion exitosa
+        404:
+          description: Producto no encontrado
+        401:
+          description: No autorizado
+    put:
+      tags:
+        - Carts (Admin)
+      summary: Edita la cantidad de un producto en el carrito con el ID especificado
+      description: Edita la cantidad de un producto en el carrito con el ID especificado
+      parameters:
+        - name: CartId
+          in: path
+          required: true
+          description: ID del carrito
+          schema:
+            type: string
+          example: "2"
+        - name: ProductsId
+          in: path
+          required: true
+          description: ID del producto
+          schema:
+            type: string
+          example: "2"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/Quantity'
+      responses:
+        200:
+          description: Peticion exitosa
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cart'
+        404:
+          description: Producto no encontrado
+        401:
+          description: No autorizado
+    delete:
+      tags:
+        - Carts (Admin)
+      summary: Elimina un producto del carrito con el ID especificado
+      description: Elimina un producto del carrito con el ID especificado
+      parameters:
+        - name: CartId
+          in: path
+          required: true
+          description: ID del carrito
+          schema:
+            type: string
+          example: "2"
+        - name: ProductsId
+          in: path
+          required: true
+          description: ID del producto
+          schema:
+            type: string
+          example: "2"
+      responses:
+        200:
+          description: Petición exitosa
+        404:
+          description: Carrito no encontrado
+        401:
+          description: No autorizado
+  /api/carts/delete/{CartId}:
+    delete:
+      tags:
+        - Carts (Admin)
+      summary: Elimina el carrito con el ID especificado
+      description: Elimina el carrito con el ID especificado
+      parameters:
+        - name: CartId
+          in: path
+          required: true
+          description: ID del carrito
+          schema:
+            type: string
+          example: "2"
+      responses:
+        200:
+          description: Peticion exitosa
+        404:
+          description: Carrito no encontrado
+        401:
+          description: No autorizado
+
+components:
+  schemas:
+    Cart:
+      type: object
+      properties:
+        status:
+          type: string
+        payload:
+          type: array
+          items:
+            type: object
+            properties:
+              _id:
+                type: string
+              id:
+                type: string
+              products:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: object
+                      properties:
+                        owner:
+                          type: string
+                        _id:
+                          type: string
+                        id:
+                          type: integer
+                        title:
+                          type: string
+                        description:
+                          type: string
+                        price:
+                          type: number
+                        thumbnail:
+                          type: string
+                        code:
+                          type: string
+                        stock:
+                          type: integer
+                        status:
+                          type: boolean
+                        category:
+                          type: string
+                    quantity:
+                      type: integer
+                    _id:
+                      type: string
+              __v:
+                type: integer
+      example:
+        status: success
+        payload: 
+          - _id: "669053b0be2594c9d12d1989"
+            id: "2"
+            products:
+              - id:
+                  owner: "admin"
+                  _id: "6645229a614a8c84ef77429b"
+                  id: 3
+                  title: "cualquier cosa 3"
+                  description: "Este es un producto prueba"
+                  price: 120
+                  thumbnail: "Sin imagen"
+                  code: "ghi789"
+                  stock: 25
+                  status: true
+                  category: "categoria"
+                quantity: 1
+                _id: "66bfe0d172dd65295c7eaf0e"
+            __v: 0
+    Purchased:
+      type: object
+      properties:
+        status:
+          type: string
+        payload:
+          type: object
+          properties:
+            code:
+              type: string
+            purchaseTime:
+              type: string
+            amount:
+              type: number
+            purchaser:
+              type: string
+            _id:
+              type: string
+            __v:
+              type: integer
+      example:
+        status: success
+        payload: 
+          code: "$2b$10$AwjsvyfceyDpEBFH8LitO2PyhyopqyjD6iGwD.CGDbiycU3Uwvv6"
+          purchaseTime: "16-8-2024;23:50:32"
+          amount: 120
+          purchaser: "usuario@gmail.com"
+          _id: "66c01e08f2960411ed0c8f15"
+          __v: 0
+  requestBodies:
+    Cart:
+      type: object
+      properties:
+        products:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              products:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    quantity:
+                      type: integer
+      example:
+        products: 
+            id: "2"
+            products:
+              - id: 2
+                quantity: 1
+    Quantity:
+      type: object
+      properties:
+        quantity:
+          type: integer
+      example:
+        quantity: 5

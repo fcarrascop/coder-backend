@@ -1,0 +1,201 @@
+paths:
+  /products:
+    get:
+      tags:
+        - Products (Admin or Premium only)
+      summary: Obtiene todos los productos
+      description: Regresa un json con todos los productos
+      responses:
+        200:
+          description: Peticion exitosa
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+        401:
+          description: No autorizado
+    post:
+      tags:
+        - Products (Admin or Premium only)
+      summary: Crea un nuevo producto
+      description: Envía un json con los datos del producto a crear
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/createProduct'
+      responses:
+        200:
+          description: Peticion exitosa
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+        400:
+          description: Información incompleta
+        422:
+          description: Código de producto ya existente
+        401:
+          description: No autorizado
+  /products/{productId}:
+    get:
+      tags:
+        - Products (Admin or Premium only)
+      summary: Obtiene el producto con el ID especificado
+      description: Obtiene el producto con el ID especificado
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          description: ID del producto
+          schema:
+            type: string
+          example: "2"
+      responses:
+        200:
+          description: Peticion exitosa
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+        404:
+          description: Producto no encontrado
+        401:
+          description: No autorizado
+    put:
+      tags:
+        - Products (Admin or Premium only)
+      summary: Edita el producto con el ID especificado
+      description: Edita el producto con el ID especificado
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          description: ID del producto
+          schema:
+            type: string
+          example: "2"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/createProduct'
+      responses:
+        200:
+          description: Peticion exitosa
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+        404:
+          description: Producto no encontrado
+        401:
+          description: No autorizado
+    delete:
+      tags:
+        - Products (Admin or Premium only)
+      summary: Elimina el producto con el ID especificado
+      description: Elimina el producto con el ID especificado
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          description: ID del producto
+          schema:
+            type: string
+          example: "2"
+      responses:
+        200:
+          description: Peticion exitosa
+        404:
+          description: Producto no encontrado
+        401:
+          description: No autorizado
+
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        status:
+          type: string
+        payload:
+          type: array
+          items:
+            type: object
+            properties:
+              _id:
+                type: string
+              id:
+                type: integer
+              title:
+                type: string
+              description:
+                type: string
+              price:
+                type: integer
+              thumbnail:
+                type: string
+              code:
+                type: string
+              stock:
+                type: integer
+              status:
+                type: boolean
+              category:
+                type: string
+              owner:
+                type: string
+      example:
+        status: success
+        payload: 
+          _id: "6645229a614a8c84ef77429a"
+          id: 2
+          title: "Producto de prueba 2"
+          description: "Este es otro producto de prueba"
+          price: "150"
+          thumbnail: "Sin imagen"
+          code: "def456"
+          stock: 30
+          status: true
+          category: "Categoria 1"
+          owner: "usuario@gmail.com"
+  requestBodies:
+    createProduct:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        price:
+          type: integer
+        thumbnail:
+          type: string
+        code:
+          type: string
+        stock:
+          type: integer
+        status:
+          type: boolean
+        category:
+          type: string
+      example:
+        title: "Producto de prueba 2"
+        description: "Este es otro producto de prueba"
+        price: "150"
+        thumbnail: "Sin imagen"
+        code: "def456"
+        stock: 30
+        status: true
+        category: "Categoria 1"

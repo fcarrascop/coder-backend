@@ -1,0 +1,17 @@
+2024-07-30T03:02:10.828Z fatal: Test fatal
+2024-07-30T03:02:10.830Z error: Test error
+2024-07-30T03:02:25.028Z fatal: Test fatal
+2024-07-30T03:02:25.029Z error: Test error
+2024-07-30T03:02:33.917Z fatal: Test fatal
+2024-07-30T03:02:33.918Z error: Test error
+2024-08-06T12:06:29.330Z error: Hola
+2024-08-06T12:06:29.339Z error: Hola
+2024-08-06T15:59:03.070Z error: Hola
+2024-08-06T15:59:03.078Z error: Hola
+2024-08-09T02:51:29.397Z error: Error al obtener el producto: undefined
+2024-08-16T04:04:03.479Z error: Error al crear el producto: Código de producto ya existente
+2024-09-11T01:50:04.207Z error: Error al iniciar con github
+2024-09-16T03:00:13.484Z error: Error al registrar usuario: TypeError: Cannot read properties of undefined (reading '_id')
+2024-09-16T03:01:31.268Z error: Error al registrar usuario: TypeError: Cannot read properties of undefined (reading '_id')
+2024-09-16T03:02:00.068Z error: Error al registrar usuario: TypeError: Cannot read properties of undefined (reading '_id')
+2024-09-16T20:41:59.097Z error: Error al registrar usuario: TypeError: Cannot read properties of undefined (reading '_id')

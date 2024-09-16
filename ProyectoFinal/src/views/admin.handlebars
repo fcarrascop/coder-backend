@@ -1,0 +1,74 @@
+<script src="/js/admin.js"></script>
+
+<header>
+    <nav class="navbar navbar-expand-xl">
+        <div class="container">
+            <a class="navbar-brand brand header-adj" href="http://localhost:8080/">
+                Tienda genérica.
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse text-center justify-content-end" id="navbarNav">
+                <!-- paginas -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link blanco" aria-current="page" href="http://localhost:8080/home">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link blanco" aria-current="page" href="http://localhost:8080/profile">Perfil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link blanco" href="http://localhost:8080/chat">Chat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link blanco" href="http://localhost:8080/cart">🛒</a>
+                    </li>
+                    {{#if isAdmin}}
+                    <li class="nav-item">
+                        <a class="nav-link blanco" href="http://localhost:8080/admin">Admin</a>
+                    </li>
+                    {{/if}}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="container mt-5">
+    <h2 class="mt-4">Acciones rápidas</h2>
+    <div class="row">
+        <div class="col-4">
+            <button class="btn btn-danger" onclick="deleteIde()">Eliminar usuarios inactivos</button>
+        </div>
+    </div>
+    <h2 class="mt-5">Usuarios</h2>
+
+    <div class="row">
+        {{#each users}}
+        <div class="row mt-2">
+            <div class="col-2">
+                <p>{{this.firstName}} {{this.lastName}}</p>
+            </div>
+            <div class="col-3">
+                <p>{{this.email}}</p>
+            </div>
+            <div class="col-2">
+                <select id="role-{{this.email}}"class="form-select" aria-label="Default select example">
+                    <option value="admin" {{#eq this.role "admin" }}selected{{/eq}}>Admin</option>
+                    <option value="premium" {{#eq this.role "premium" }}selected{{/eq}}>Premium</option>
+                    <option value="user" {{#eq this.role "user" }}selected{{/eq}}>User</option>
+                </select>
+            </div>
+            <div class="col-2">
+                <button class="btn btn-primary" onclick="editRole('{{this.email}}')">Editar rol</button>
+            </div>
+            <div class="col-3">
+                <button class="btn btn-danger" onclick="deleteUser('{{this.email}}')">Eliminar</button>
+            </div>
+            <div hidden></div>
+        </div>
+        {{/each}}
+    </div>
+</div>

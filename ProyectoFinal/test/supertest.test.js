@@ -3,7 +3,7 @@ import supertest from "supertest";
 import { faker } from "@faker-js/faker"
 
 
-const requester = supertest(`http://localhost:8080`);
+const requester = supertest(`{{baseUrl}}`);
 
 describe("Testing API tienda genérica", ()=>{
     // Variable para guardar la cookie de sesión

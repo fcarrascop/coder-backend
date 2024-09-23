@@ -24,7 +24,7 @@ const initializePassport = () => {
         try {
             let user = await UserModel.findOne({email: profile._json.email})
             if (!user) {
-                let response = await fetch("http://localhost:8080/api/carts", {
+                let response = await fetch(`${process.env.BASE_URL}/api/carts`, {
                     method: "POST",
                     redirect: "follow"
                 })
@@ -57,7 +57,7 @@ const initializePassport = () => {
                     Logger.warning("Usuario ya existente")
                     return done(null, false, {message: "Usuario ya existe"})
                 }
-                let response = await fetch("http://localhost:8080/api/carts", {
+                let response = await fetch(`${process.env.BASE_URL}/api/carts`, {
                     method: "POST",
                     redirect: "follow"
                 })

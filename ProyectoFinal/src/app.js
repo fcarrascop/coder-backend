@@ -96,6 +96,12 @@ const hbs = handlebars.create({
     }
 })
 
+// Configuración url
+app.use((req, res, next) => {
+    res.locals.baseUrl = process.env.BASE_URL
+    next()
+})
+
 // Configurar handlebars
 app.engine("handlebars", hbs.engine)
 app.set("views", __dirname+ "/../views")

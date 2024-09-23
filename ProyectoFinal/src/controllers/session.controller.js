@@ -90,7 +90,7 @@ export const passwordRecoveryLink = async (req, res) => {
     let user = await userModel.findOne({email: email})
     if (!user) return res.json({status: "error", message: "Usuario no encotrado"})
     let token = await createTokenRecovery(user.email)
-    let link = `http://localhost:${process.env.PORT}/passwordRecoveryChange/${token.payload}`
+    let link = `${process.env.BASE_URL}/passwordRecoveryChange/${token.payload}`
     await recoveryEmail(user, link)
     res.render('passwordRecoverySend', {user})
 }

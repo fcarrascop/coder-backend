@@ -13,7 +13,7 @@ async function editRole(email) {
         redirect: "follow"
     };
 
-    let response = await fetch("http://localhost:8080/api/users/role", requestOptions)
+    let response = await fetch(`${window.location.origin}/api/users/role`, requestOptions)
     let result = await response.json()
     if (result.status === "error") {
         alert(result.error)
@@ -37,7 +37,7 @@ async function deleteUser(email) {
         redirect: "follow"
     };
 
-    let response = await fetch("http://localhost:8080/api/users/one", requestOptions)
+    let response = await fetch(`${window.location.origin}/api/users/one`, requestOptions)
     let result = await response.json()
     if (result.status === "error") {
         alert(result.error)
@@ -58,7 +58,7 @@ async function deleteIde() {
         redirect: "follow"
     };
 
-    let response = await fetch("http://localhost:8080/api/users", requestOptions)
+    let response = await fetch(`${window.location.origin}/api/users`, requestOptions)
     let result = await response.json()
     alert(result.message)
     location.reload()

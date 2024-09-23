@@ -89,7 +89,7 @@ function changePassword() {
                     newPassword: password.value,
                     oldPassword: document.getElementById("oldPassword").value
                 }
-                const response = await fetch('http://localhost:8080/changepassword', {
+                const response = await fetch(`${window.location.origin}/changepassword`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

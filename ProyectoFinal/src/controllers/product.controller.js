@@ -89,8 +89,8 @@ export const showProducts = async (req, res) => {
     }
     let id = user ? await cart.getCartId(user.cartId) : null;
     if (id === null) {req.logger.warning("Id de carrito no encontrado")}
-    result.prevLink = result.hasPrevPage ? `http://localhost:8080/home?page=${result.prevPage}` : '';
-    result.nextLink = result.hasNextPage ? `http://localhost:8080/home?page=${result.nextPage}` : '';
+    result.prevLink = result.hasPrevPage ? `${process.env.BASE_URL}/home?page=${result.prevPage}` : '';
+    result.nextLink = result.hasNextPage ? `${process.env.BASE_URL}/home?page=${result.nextPage}` : '';
     res.render("products", {"result": result, "user": user?.firstName, "role": user?.role, "cartId": id, "isAdmin": (user?.role === "admin") ? true :  false})
 }
 
